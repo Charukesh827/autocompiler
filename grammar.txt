@@ -1,0 +1,42 @@
+<Program> ::= <StatementList>
+
+<StatementList> ::= <Statement> <StatementList> 
+                 | ε  // Represents an empty statement list
+
+<Statement> ::= <IfStatement>
+              | <WhileStatement>
+              | <Assignment>
+              | <ExpressionStatement>
+
+<IfStatement> ::= if ( <Condition> ) <Block> [ else <Block> ]
+
+<WhileStatement> ::= while ( <Condition> ) <Block>
+
+<Block> ::= { <StatementList> }
+
+<Assignment> ::= <Identifier> = <Expression> ;
+
+<ExpressionStatement> ::= <Expression> ;
+
+<Condition> ::= <Expression>
+              | <Expression> <RelationalOperator> <Expression>
+
+<Expression> ::= <Term> <ExpressionTail>
+<ExpressionTail> ::= ( + | - ) <Term> <ExpressionTail>
+                  | ε  // Represents an empty expression tail
+
+<Term> ::= <Factor> <TermTail>
+<TermTail> ::= ( * | / ) <Factor> <TermTail>
+             | ε  // Represents an empty term tail
+
+<Factor> ::= <Identifier>
+           | <Number>
+           | ( <Expression> )
+
+<RelationalOperator> ::= < | > | <= | >= | == | !=
+
+<Identifier> ::= [a-zA-Z_]<IdentifierExtend>
+
+<IdentifierExtend> ::= [a-zA-Z0-9_]<IdentifierExtend> | ε
+
+<Number> ::= [0-9]+ ( . [0-9]+ )?  
