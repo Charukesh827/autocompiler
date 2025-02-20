@@ -1,7 +1,7 @@
 <Program> ::= <StatementList>
 
 <StatementList> ::= <Statement> <StatementList> 
-                 | ε  // Represents an empty statement list
+                 | ε  
 
 <Statement> ::= <IfStatement>
               | <WhileStatement>
@@ -23,11 +23,11 @@
 
 <Expression> ::= <Term> <ExpressionTail>
 <ExpressionTail> ::= ( + | - ) <Term> <ExpressionTail>
-                  | ε  // Represents an empty expression tail
+                  | ε  
 
 <Term> ::= <Factor> <TermTail>
 <TermTail> ::= ( * | / ) <Factor> <TermTail>
-             | ε  // Represents an empty term tail
+             | ε 
 
 <Factor> ::= <Identifier>
            | <Number>
